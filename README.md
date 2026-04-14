@@ -6,7 +6,7 @@
 - Cesar Gritti
 
 ## Descrição
-Este repositório contém a documentação e os arquivos do projeto de modelagem de dados de um sistema de E-Commerce. O trabalho inclui sumário executivo, DFD nível 0, modelo conceitual, modelo físico/MER, dicionário de dados, script SQL com carga de teste e queries de QA. :contentReference[oaicite:0]{index=0}
+Este repositório contém a documentação e os arquivos do projeto de modelagem de dados de um sistema de E-Commerce. O trabalho inclui sumário executivo, DFD nível 0, modelo conceitual, modelo físico/MER, dicionário de dados, script SQL com carga de teste e queries de QA.
 
 ## Objetivo
 Modelar e documentar um banco de dados relacional para um sistema de E-Commerce, contemplando entidades, relacionamentos, chaves primárias, chaves estrangeiras e consultas de validação do modelo.
