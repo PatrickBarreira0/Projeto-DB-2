@@ -1,0 +1,212 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1046{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs22\lang9 1. Tabela: cliente\par
+Descri\'e7\'e3o: armazena os dados cadastrais dos clientes da loja virtual.\par
+\par
+Campo\tab Tipo\tab PK\tab FK\tab Obrigat\'f3rio\tab Descri\'e7\'e3o\par
+id_cliente\tab INT\tab Sim\tab N\'e3o\tab Sim\tab Identificador \'fanico do cliente\par
+nome\tab VARCHAR(120)\tab N\'e3o\tab N\'e3o\tab Sim\tab Nome completo do cliente\par
+email\tab VARCHAR(120)\tab N\'e3o\tab N\'e3o\tab Sim\tab Email do cliente\par
+telefone\tab VARCHAR(20)\tab N\'e3o\tab N\'e3o\tab N\'e3o\tab Telefone de contato\par
+cpf\tab VARCHAR(14)\tab N\'e3o\tab N\'e3o\tab Sim\tab CPF do cliente\par
+data_cadastro\tab DATETIME\tab N\'e3o\tab N\'e3o\tab Sim\tab Data e hora do cadastro\par
+status\tab VARCHAR(20)\tab N\'e3o\tab N\'e3o\tab Sim\tab Situa\'e7\'e3o do cliente no sistema\par
+\par
+Restri\'e7\'f5es:\par
+\par
+PK: id_cliente\par
+UNIQUE: email\par
+UNIQUE: cpf\par
+\par
+2. Tabela: endereco\par
+Descri\'e7\'e3o: armazena os endere\'e7os vinculados aos clientes.\par
+\par
+Campo\tab Tipo\tab PK\tab FK\tab Obrigat\'f3rio\tab Descri\'e7\'e3o\par
+id_endereco\tab INT\tab Sim\tab N\'e3o\tab Sim\tab Identificador \'fanico do endere\'e7o\par
+id_cliente\tab INT\tab N\'e3o\tab Sim\tab Sim\tab Cliente ao qual o endere\'e7o pertence\par
+logradouro\tab VARCHAR(120)\tab N\'e3o\tab N\'e3o\tab Sim\tab Rua, avenida ou logradouro\par
+numero\tab VARCHAR(10)\tab N\'e3o\tab N\'e3o\tab Sim\tab N\'famero do endere\'e7o\par
+complemento\tab VARCHAR(80)\tab N\'e3o\tab N\'e3o\tab N\'e3o\tab Complemento do endere\'e7o\par
+bairro\tab VARCHAR(80)\tab N\'e3o\tab N\'e3o\tab Sim\tab Bairro\par
+cidade\tab VARCHAR(80)\tab N\'e3o\tab N\'e3o\tab Sim\tab Cidade\par
+estado\tab CHAR(2)\tab N\'e3o\tab N\'e3o\tab Sim\tab Unidade federativa\par
+cep\tab VARCHAR(9)\tab N\'e3o\tab N\'e3o\tab Sim\tab CEP\par
+tipo_endereco\tab VARCHAR(20)\tab N\'e3o\tab N\'e3o\tab Sim\tab Tipo do endere\'e7o\par
+\par
+Restri\'e7\'f5es:\par
+\par
+PK: id_endereco\par
+FK: id_cliente -> cliente.id_cliente\par
+\par
+3. Tabela: categoria\par
+Descri\'e7\'e3o: classifica os produtos do cat\'e1logo.\par
+\par
+Campo\tab Tipo\tab PK\tab FK\tab Obrigat\'f3rio\tab Descri\'e7\'e3o\par
+id_categoria\tab INT\tab Sim\tab N\'e3o\tab Sim\tab Identificador \'fanico da categoria\par
+nome\tab VARCHAR(80)\tab N\'e3o\tab N\'e3o\tab Sim\tab Nome da categoria\par
+descricao\tab VARCHAR(255)\tab N\'e3o\tab N\'e3o\tab N\'e3o\tab Descri\'e7\'e3o da categoria\par
+status\tab VARCHAR(20)\tab N\'e3o\tab N\'e3o\tab Sim\tab Situa\'e7\'e3o da categoria\par
+\par
+Restri\'e7\'f5es:\par
+\par
+PK: id_categoria\par
+UNIQUE: nome\par
+\par
+4. Tabela: produto\par
+Descri\'e7\'e3o: armazena os produtos dispon\'edveis para venda.\par
+\par
+Campo\tab Tipo\tab PK\tab FK\tab Obrigat\'f3rio\tab Descri\'e7\'e3o\par
+id_produto\tab INT\tab Sim\tab N\'e3o\tab Sim\tab Identificador \'fanico do produto\par
+id_categoria\tab INT\tab N\'e3o\tab Sim\tab Sim\tab Categoria \'e0 qual o produto pertence\par
+nome\tab VARCHAR(120)\tab N\'e3o\tab N\'e3o\tab Sim\tab Nome do produto\par
+descricao\tab TEXT\tab N\'e3o\tab N\'e3o\tab N\'e3o\tab Descri\'e7\'e3o detalhada do produto\par
+sku\tab VARCHAR(50)\tab N\'e3o\tab N\'e3o\tab Sim\tab C\'f3digo \'fanico do produto\par
+preco\tab DECIMAL(10,2)\tab N\'e3o\tab N\'e3o\tab Sim\tab Pre\'e7o de venda\par
+estoque\tab INT\tab N\'e3o\tab N\'e3o\tab Sim\tab Quantidade em estoque\par
+ativo\tab BOOLEAN\tab N\'e3o\tab N\'e3o\tab Sim\tab Indica se o produto est\'e1 ativo\par
+data_cadastro\tab DATETIME\tab N\'e3o\tab N\'e3o\tab Sim\tab Data de cadastro do produto\par
+\par
+Restri\'e7\'f5es:\par
+\par
+PK: id_produto\par
+FK: id_categoria -> categoria.id_categoria\par
+UNIQUE: sku\par
+\par
+5. Tabela: fornecedor\par
+Descri\'e7\'e3o: armazena os dados dos fornecedores dos produtos.\par
+\par
+Campo\tab Tipo\tab PK\tab FK\tab Obrigat\'f3rio\tab Descri\'e7\'e3o\par
+id_fornecedor\tab INT\tab Sim\tab N\'e3o\tab Sim\tab Identificador \'fanico do fornecedor\par
+razao_social\tab VARCHAR(120)\tab N\'e3o\tab N\'e3o\tab Sim\tab Raz\'e3o social da empresa\par
+nome_fantasia\tab VARCHAR(120)\tab N\'e3o\tab N\'e3o\tab N\'e3o\tab Nome fantasia do fornecedor\par
+cnpj\tab VARCHAR(18)\tab N\'e3o\tab N\'e3o\tab Sim\tab CNPJ da empresa\par
+email\tab VARCHAR(120)\tab N\'e3o\tab N\'e3o\tab N\'e3o\tab Email de contato\par
+telefone\tab VARCHAR(20)\tab N\'e3o\tab N\'e3o\tab N\'e3o\tab Telefone de contato\par
+status\tab VARCHAR(20)\tab N\'e3o\tab N\'e3o\tab Sim\tab Situa\'e7\'e3o do fornecedor\par
+\par
+Restri\'e7\'f5es:\par
+\par
+PK: id_fornecedor\par
+UNIQUE: cnpj\par
+\par
+6. Tabela: produto_fornecedor\par
+Descri\'e7\'e3o: tabela associativa entre produtos e fornecedores.\par
+\par
+Campo\tab Tipo\tab PK\tab FK\tab Obrigat\'f3rio\tab Descri\'e7\'e3o\par
+id_produto\tab INT\tab Sim\tab Sim\tab Sim\tab Produto relacionado\par
+id_fornecedor\tab INT\tab Sim\tab Sim\tab Sim\tab Fornecedor relacionado\par
+custo_fornecimento\tab DECIMAL(10,2)\tab N\'e3o\tab N\'e3o\tab Sim\tab Custo do produto no fornecedor\par
+prazo_reposicao_dias\tab INT\tab N\'e3o\tab N\'e3o\tab Sim\tab Prazo de reposi\'e7\'e3o em dias\par
+\par
+Restri\'e7\'f5es:\par
+\par
+PK composta: id_produto, id_fornecedor\par
+FK: id_produto -> produto.id_produto\par
+FK: id_fornecedor -> fornecedor.id_fornecedor\par
+\par
+7. Tabela: carrinho\par
+Descri\'e7\'e3o: representa o carrinho de compras do cliente.\par
+\par
+Campo\tab Tipo\tab PK\tab FK\tab Obrigat\'f3rio\tab Descri\'e7\'e3o\par
+id_carrinho\tab INT\tab Sim\tab N\'e3o\tab Sim\tab Identificador \'fanico do carrinho\par
+id_cliente\tab INT\tab N\'e3o\tab Sim\tab Sim\tab Cliente dono do carrinho\par
+data_criacao\tab DATETIME\tab N\'e3o\tab N\'e3o\tab Sim\tab Data de cria\'e7\'e3o do carrinho\par
+status\tab VARCHAR(20)\tab N\'e3o\tab N\'e3o\tab Sim\tab Situa\'e7\'e3o do carrinho\par
+\par
+Restri\'e7\'f5es:\par
+\par
+PK: id_carrinho\par
+FK: id_cliente -> cliente.id_cliente\par
+\par
+8. Tabela: item_carrinho\par
+Descri\'e7\'e3o: representa cada item inserido no carrinho.\par
+\par
+Campo\tab Tipo\tab PK\tab FK\tab Obrigat\'f3rio\tab Descri\'e7\'e3o\par
+id_item_carrinho\tab INT\tab Sim\tab N\'e3o\tab Sim\tab Identificador \'fanico do item\par
+id_carrinho\tab INT\tab N\'e3o\tab Sim\tab Sim\tab Carrinho ao qual o item pertence\par
+id_produto\tab INT\tab N\'e3o\tab Sim\tab Sim\tab Produto adicionado ao carrinho\par
+quantidade\tab INT\tab N\'e3o\tab N\'e3o\tab Sim\tab Quantidade do produto\par
+preco_unitario\tab DECIMAL(10,2)\tab N\'e3o\tab N\'e3o\tab Sim\tab Pre\'e7o unit\'e1rio registrado no carrinho\par
+\par
+Restri\'e7\'f5es:\par
+\par
+PK: id_item_carrinho\par
+FK: id_carrinho -> carrinho.id_carrinho\par
+FK: id_produto -> produto.id_produto\par
+\par
+9. Tabela: pedido\par
+Descri\'e7\'e3o: armazena os pedidos finalizados pelos clientes.\par
+\par
+Campo\tab Tipo\tab PK\tab FK\tab Obrigat\'f3rio\tab Descri\'e7\'e3o\par
+id_pedido\tab INT\tab Sim\tab N\'e3o\tab Sim\tab Identificador \'fanico do pedido\par
+id_cliente\tab INT\tab N\'e3o\tab Sim\tab Sim\tab Cliente que realizou o pedido\par
+id_endereco_entrega\tab INT\tab N\'e3o\tab Sim\tab Sim\tab Endere\'e7o de entrega do pedido\par
+data_pedido\tab DATETIME\tab N\'e3o\tab N\'e3o\tab Sim\tab Data e hora do pedido\par
+status\tab VARCHAR(20)\tab N\'e3o\tab N\'e3o\tab Sim\tab Situa\'e7\'e3o do pedido\par
+valor_produtos\tab DECIMAL(10,2)\tab N\'e3o\tab N\'e3o\tab Sim\tab Soma dos produtos\par
+valor_frete\tab DECIMAL(10,2)\tab N\'e3o\tab N\'e3o\tab Sim\tab Valor do frete\par
+valor_desconto\tab DECIMAL(10,2)\tab N\'e3o\tab N\'e3o\tab Sim\tab Valor do desconto aplicado\par
+valor_total\tab DECIMAL(10,2)\tab N\'e3o\tab N\'e3o\tab Sim\tab Valor final do pedido\par
+\par
+Restri\'e7\'f5es:\par
+\par
+PK: id_pedido\par
+FK: id_cliente -> cliente.id_cliente\par
+FK: id_endereco_entrega -> endereco.id_endereco\par
+\par
+10. Tabela: item_pedido\par
+Descri\'e7\'e3o: detalha os produtos comprados em cada pedido.\par
+\par
+Campo\tab Tipo\tab PK\tab FK\tab Obrigat\'f3rio\tab Descri\'e7\'e3o\par
+id_item_pedido\tab INT\tab Sim\tab N\'e3o\tab Sim\tab Identificador \'fanico do item do pedido\par
+id_pedido\tab INT\tab N\'e3o\tab Sim\tab Sim\tab Pedido ao qual o item pertence\par
+id_produto\tab INT\tab N\'e3o\tab Sim\tab Sim\tab Produto comprado\par
+quantidade\tab INT\tab N\'e3o\tab N\'e3o\tab Sim\tab Quantidade comprada\par
+preco_unitario\tab DECIMAL(10,2)\tab N\'e3o\tab N\'e3o\tab Sim\tab Pre\'e7o unit\'e1rio no momento da compra\par
+desconto_item\tab DECIMAL(10,2)\tab N\'e3o\tab N\'e3o\tab N\'e3o\tab Desconto aplicado ao item\par
+subtotal\tab DECIMAL(10,2)\tab N\'e3o\tab N\'e3o\tab Sim\tab Valor subtotal do item\par
+\par
+Restri\'e7\'f5es:\par
+\par
+PK: id_item_pedido\par
+FK: id_pedido -> pedido.id_pedido\par
+FK: id_produto -> produto.id_produto\par
+\par
+11. Tabela: pagamento\par
+Descri\'e7\'e3o: armazena os dados de pagamento de cada pedido.\par
+\par
+Campo\tab Tipo\tab PK\tab FK\tab Obrigat\'f3rio\tab Descri\'e7\'e3o\par
+id_pagamento\tab INT\tab Sim\tab N\'e3o\tab Sim\tab Identificador \'fanico do pagamento\par
+id_pedido\tab INT\tab N\'e3o\tab Sim\tab Sim\tab Pedido vinculado ao pagamento\par
+forma_pagamento\tab VARCHAR(20)\tab N\'e3o\tab N\'e3o\tab Sim\tab Forma de pagamento utilizada\par
+status_pagamento\tab VARCHAR(20)\tab N\'e3o\tab N\'e3o\tab Sim\tab Situa\'e7\'e3o do pagamento\par
+valor_pago\tab DECIMAL(10,2)\tab N\'e3o\tab N\'e3o\tab Sim\tab Valor efetivamente pago\par
+data_pagamento\tab DATETIME\tab N\'e3o\tab N\'e3o\tab N\'e3o\tab Data do pagamento\par
+codigo_transacao\tab VARCHAR(80)\tab N\'e3o\tab N\'e3o\tab N\'e3o\tab C\'f3digo da transa\'e7\'e3o financeira\par
+\par
+Restri\'e7\'f5es:\par
+\par
+PK: id_pagamento\par
+FK: id_pedido -> pedido.id_pedido\par
+UNIQUE: id_pedido\par
+\par
+12. Tabela: entrega\par
+Descri\'e7\'e3o: armazena os dados log\'edsticos de entrega de cada pedido.\par
+\par
+Campo\tab Tipo\tab PK\tab FK\tab Obrigat\'f3rio\tab Descri\'e7\'e3o\par
+id_entrega\tab INT\tab Sim\tab N\'e3o\tab Sim\tab Identificador \'fanico da entrega\par
+id_pedido\tab INT\tab N\'e3o\tab Sim\tab Sim\tab Pedido vinculado \'e0 entrega\par
+transportadora\tab VARCHAR(100)\tab N\'e3o\tab N\'e3o\tab Sim\tab Nome da transportadora\par
+codigo_rastreio\tab VARCHAR(80)\tab N\'e3o\tab N\'e3o\tab N\'e3o\tab C\'f3digo de rastreamento\par
+status_entrega\tab VARCHAR(20)\tab N\'e3o\tab N\'e3o\tab Sim\tab Situa\'e7\'e3o da entrega\par
+data_envio\tab DATETIME\tab N\'e3o\tab N\'e3o\tab N\'e3o\tab Data de envio\par
+data_entrega_prevista\tab DATETIME\tab N\'e3o\tab N\'e3o\tab N\'e3o\tab Previs\'e3o de entrega\par
+data_entrega_realizada\tab DATETIME\tab N\'e3o\tab N\'e3o\tab N\'e3o\tab Data real da entrega\par
+\par
+Restri\'e7\'f5es:\par
+\par
+PK: id_entrega\par
+FK: id_pedido -> pedido.id_pedido\par
+UNIQUE: id_pedido\par
+}
+ 
