@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<title>Projeto 1 – Modelo Físico / MER do Sistema de E-Commerce</title>
+<style>
+body{font-family:Arial,Helvetica,sans-serif;margin:40px;color:#1f2937;line-height:1.45}
+h1,h2,h3{color:#1e3a8a}
+table{border-collapse:collapse;width:100%;margin:14px 0 26px 0}
+th,td{border:1px solid #cbd5e1;padding:8px;vertical-align:middle}
+th{background:#dbeafe;text-align:left}
+tr:nth-child(even) td{background:#f8fafc}
+.container{max-width:1100px;margin:0 auto}
+.note{background:#eff6ff;border-left:4px solid #2563eb;padding:12px 14px;margin:18px 0}
+img{max-width:100%;border:1px solid #cbd5e1}
+code{background:#f3f4f6;padding:2px 5px;border-radius:4px}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Projeto 1 – Modelo Físico / MER do Sistema de E-Commerce</h1>
+<p>Documento HTML da Etapa 3. Este material descreve o modelo físico do banco de dados, com suas tabelas, atributos e relacionamentos.</p>
+<h2>Diagrama MER</h2>
+<img src="03_modelo_fisico_mer_diagrama.png" alt="Diagrama MER do sistema de e-commerce">
+<h2>Relacionamentos principais</h2>
+<table>
+<tr><th>Origem</th><th>Destino</th><th>Cardinalidade</th></tr>
+<tr><td>CLIENTE</td><td>ENDERECO</td><td>1:N</td></tr><tr><td>CLIENTE</td><td>CARRINHO</td><td>1:N</td></tr><tr><td>CLIENTE</td><td>PEDIDO</td><td>1:N</td></tr><tr><td>CATEGORIA</td><td>PRODUTO</td><td>1:N</td></tr><tr><td>PRODUTO</td><td>PRODUTO_FORNECEDOR</td><td>1:N</td></tr><tr><td>FORNECEDOR</td><td>PRODUTO_FORNECEDOR</td><td>1:N</td></tr><tr><td>CARRINHO</td><td>ITEM_CARRINHO</td><td>1:N</td></tr><tr><td>PRODUTO</td><td>ITEM_CARRINHO</td><td>1:N</td></tr><tr><td>PEDIDO</td><td>ITEM_PEDIDO</td><td>1:N</td></tr><tr><td>PRODUTO</td><td>ITEM_PEDIDO</td><td>1:N</td></tr><tr><td>PEDIDO</td><td>PAGAMENTO</td><td>1:1</td></tr><tr><td>PEDIDO</td><td>ENTREGA</td><td>1:1</td></tr><tr><td>ENDERECO</td><td>PEDIDO</td><td>1:N</td></tr></table><h2>Tabelas</h2><h3>CLIENTE</h3><table><tr><th>Campo / definição</th></tr><tr><td>id_cliente (PK) INT</td></tr><tr><td>nome VARCHAR(120)</td></tr><tr><td>email VARCHAR(120) UNIQUE</td></tr><tr><td>telefone VARCHAR(20)</td></tr><tr><td>cpf VARCHAR(14) UNIQUE</td></tr><tr><td>data_cadastro DATETIME</td></tr><tr><td>status VARCHAR(20)</td></tr></table><h3>ENDERECO</h3><table><tr><th>Campo / definição</th></tr><tr><td>id_endereco (PK) INT</td></tr><tr><td>id_cliente (FK) INT</td></tr><tr><td>logradouro VARCHAR(120)</td></tr><tr><td>numero VARCHAR(10)</td></tr><tr><td>complemento VARCHAR(80)</td></tr><tr><td>bairro VARCHAR(80)</td></tr><tr><td>cidade VARCHAR(80)</td></tr><tr><td>estado CHAR(2)</td></tr><tr><td>cep VARCHAR(9)</td></tr><tr><td>tipo_endereco VARCHAR(20)</td></tr></table><h3>CATEGORIA</h3><table><tr><th>Campo / definição</th></tr><tr><td>id_categoria (PK) INT</td></tr><tr><td>nome VARCHAR(80) UNIQUE</td></tr><tr><td>descricao VARCHAR(255)</td></tr><tr><td>status VARCHAR(20)</td></tr></table><h3>PRODUTO</h3><table><tr><th>Campo / definição</th></tr><tr><td>id_produto (PK) INT</td></tr><tr><td>id_categoria (FK) INT</td></tr><tr><td>nome VARCHAR(120)</td></tr><tr><td>descricao TEXT</td></tr><tr><td>sku VARCHAR(50) UNIQUE</td></tr><tr><td>preco DECIMAL(10,2)</td></tr><tr><td>estoque INT</td></tr><tr><td>ativo BOOLEAN</td></tr><tr><td>data_cadastro DATETIME</td></tr></table><h3>FORNECEDOR</h3><table><tr><th>Campo / definição</th></tr><tr><td>id_fornecedor (PK) INT</td></tr><tr><td>razao_social VARCHAR(120)</td></tr><tr><td>nome_fantasia VARCHAR(120)</td></tr><tr><td>cnpj VARCHAR(18) UNIQUE</td></tr><tr><td>email VARCHAR(120)</td></tr><tr><td>telefone VARCHAR(20)</td></tr><tr><td>status VARCHAR(20)</td></tr></table><h3>PRODUTO_FORNECEDOR</h3><table><tr><th>Campo / definição</th></tr><tr><td>id_produto (PK, FK) INT</td></tr><tr><td>id_fornecedor (PK, FK) INT</td></tr><tr><td>custo_fornecimento DECIMAL(10,2)</td></tr><tr><td>prazo_reposicao_dias INT</td></tr></table><h3>CARRINHO</h3><table><tr><th>Campo / definição</th></tr><tr><td>id_carrinho (PK) INT</td></tr><tr><td>id_cliente (FK) INT</td></tr><tr><td>data_criacao DATETIME</td></tr><tr><td>status VARCHAR(20)</td></tr></table><h3>ITEM_CARRINHO</h3><table><tr><th>Campo / definição</th></tr><tr><td>id_item_carrinho (PK) INT</td></tr><tr><td>id_carrinho (FK) INT</td></tr><tr><td>id_produto (FK) INT</td></tr><tr><td>quantidade INT</td></tr><tr><td>preco_unitario DECIMAL(10,2)</td></tr></table><h3>PEDIDO</h3><table><tr><th>Campo / definição</th></tr><tr><td>id_pedido (PK) INT</td></tr><tr><td>id_cliente (FK) INT</td></tr><tr><td>id_endereco_entrega (FK) INT</td></tr><tr><td>data_pedido DATETIME</td></tr><tr><td>status VARCHAR(20)</td></tr><tr><td>valor_produtos DECIMAL(10,2)</td></tr><tr><td>valor_frete DECIMAL(10,2)</td></tr><tr><td>valor_desconto DECIMAL(10,2)</td></tr><tr><td>valor_total DECIMAL(10,2)</td></tr></table><h3>ITEM_PEDIDO</h3><table><tr><th>Campo / definição</th></tr><tr><td>id_item_pedido (PK) INT</td></tr><tr><td>id_pedido (FK) INT</td></tr><tr><td>id_produto (FK) INT</td></tr><tr><td>quantidade INT</td></tr><tr><td>preco_unitario DECIMAL(10,2)</td></tr><tr><td>desconto_item DECIMAL(10,2)</td></tr><tr><td>subtotal DECIMAL(10,2)</td></tr></table><h3>PAGAMENTO</h3><table><tr><th>Campo / definição</th></tr><tr><td>id_pagamento (PK) INT</td></tr><tr><td>id_pedido (FK, UNIQUE) INT</td></tr><tr><td>forma_pagamento VARCHAR(20)</td></tr><tr><td>status_pagamento VARCHAR(20)</td></tr><tr><td>valor_pago DECIMAL(10,2)</td></tr><tr><td>data_pagamento DATETIME</td></tr><tr><td>codigo_transacao VARCHAR(80)</td></tr></table><h3>ENTREGA</h3><table><tr><th>Campo / definição</th></tr><tr><td>id_entrega (PK) INT</td></tr><tr><td>id_pedido (FK, UNIQUE) INT</td></tr><tr><td>transportadora VARCHAR(100)</td></tr><tr><td>codigo_rastreio VARCHAR(80)</td></tr><tr><td>status_entrega VARCHAR(20)</td></tr><tr><td>data_envio DATETIME</td></tr><tr><td>data_entrega_prevista DATETIME</td></tr><tr><td>data_entrega_realizada DATETIME</td></tr></table>
+<div class="note">
+<strong>Observação:</strong> o arquivo <code>.mwb</code> é nativo do MySQL Workbench. Este pacote entrega o conteúdo equivalente em PDF, PNG e HTML, além de uma base SQL.
+</div>
+</div>
+</body>
+</html>
